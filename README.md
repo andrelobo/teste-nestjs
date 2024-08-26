@@ -1,85 +1,52 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# API de Gerenciamento de Produtos
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Esta API é projetada para gerenciar produtos e categorias. Oferece operações CRUD (Criar, Ler, Atualizar e Excluir) para produtos e categorias, com autenticação baseada em JWT para proteger os endpoints.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tecnologias Usadas
 
-## Description
+### NestJS
+- **Motivo**: O NestJS é um framework Node.js progressivo que facilita a construção de aplicativos escaláveis e eficientes. Ele utiliza TypeScript por padrão, o que proporciona uma melhor tipagem e suporte a recursos modernos de JavaScript.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### TypeORM
+- **Motivo**: O TypeORM é uma biblioteca de ORM para TypeScript e JavaScript que facilita a interação com bancos de dados relacionais. Ele ajuda a mapear entidades para tabelas e permite realizar operações de banco de dados de maneira intuitiva.
 
-## Project setup
+### MySQL
+- **Motivo**: MySQL é um dos sistemas de gerenciamento de banco de dados relacionais mais populares e amplamente usados, conhecido por sua confiabilidade e desempenho.
 
-```bash
-$ yarn install
-```
+### Passport.js
+- **Motivo**: Passport é um middleware de autenticação para Node.js que suporta vários mecanismos de autenticação, como JWT, e facilita a integração com diferentes estratégias de autenticação.
 
-## Compile and run the project
+### Bcrypt
+- **Motivo**: Bcrypt é uma biblioteca para hash de senhas, oferecendo uma maneira segura de armazenar e verificar senhas no banco de dados.
 
-```bash
-# development
-$ yarn run start
+## Passo a Passo para Rodar a Aplicação Localmente
 
-# watch mode
-$ yarn run start:dev
+1. **Clone o Repositório**
 
-# production mode
-$ yarn run start:prod
-```
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd <NOME_DA_PASTA>
 
-## Run tests
 
-```bash
-# unit tests
-$ yarn run test
+2. **Instale as Dependências**
 
-# e2e tests
-$ yarn run test:e2e
+  Utilize o Yarn para instalar as dependências:
 
-# test coverage
-$ yarn run test:cov
-```
+  yarn install
 
-## Resources
+3. ** Configuração do Banco de dados**
 
-Check out a few resources that may come in handy when working with NestJS:
+ 
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Crie um banco de dados MySQL com o nome irede_produtos e configure o acesso no arquivo ormconfig.json ou nas variáveis de ambiente.
 
-## Support
+Inicialize a Aplicação
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Execute o comando para iniciar a aplicação:
 
-## Stay in touch
+    yarn start
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    Teste os Endpoints
 
-## License
+    A API estará disponível em http://localhost:3000. Você pode testar os endpoints usando uma ferramenta como Insomnia ou Postman.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
