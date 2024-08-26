@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
 import { ProductsModule } from './products/products.module';
 import { CategoriesModule } from './categories/categories.module';
 import { Product } from './entities/product.entity';
@@ -16,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
       username: 'lobo',
       password: 'Nhaca70x07@',
       database: 'irede_produtos',
-      entities: [Product, Category],
+      entities: [User, Product, Category],
       synchronize: true,
     }),
     ProductsModule,
