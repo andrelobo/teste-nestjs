@@ -13,7 +13,9 @@ import { CreateCategoryDto } from '../dtos/create-category.dto';
 import { UpdateCategoryDto } from '../dtos/update-category.dto';
 import { Category } from '../entities/category.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'; // Importe o JwtAuthGuard
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('categories')
 @Controller('categories')
 @UseGuards(JwtAuthGuard)
 export class CategoriesController {

@@ -3,23 +3,37 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
 
-// Carregue as variáveis de ambiente do arquivo .env
+// Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
-
-console.log('DATABASE_TYPE:', process.env.DATABASE_TYPE);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Configuração do Swagger
   const config = new DocumentBuilder()
     .setTitle('Irede Produtos API')
-    .setDescription('descrição da Api Irede-produtos')
+    .setDescription('API para gerenciamento de produtos')
     .setVersion('1.0')
-    .addTag('example')
+    .addTag('products', 'Operações relacionadas a produtos')
+    .addTag('categories', 'Operações relacionadas a categorias')
+    .setTermsOfService('http://example.com/terms')
+    .setContact(
+      'Support',
+      'https://www.linkedin.com/in/andreloboweb/',
+      'loboandre@hotmail.com',
+    )
+    .setLicense('MIT', 'http://example.com/license')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  const port = process.env.PORT || 3000;
+  await app.listen(port, () => {
+    console.log(`Application is running on: http://localhost:${port}`);
+  });
 }
-bootstrap();
+
+bootstrap().catch((err) => {
+  console.error('Failed to start the application:', err);
+});

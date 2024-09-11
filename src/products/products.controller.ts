@@ -17,8 +17,10 @@ import { CreateProductDto } from '../dtos/create-product.dto';
 import { UpdateProductDto } from '../dtos/update-product.dto';
 import { Product } from '../entities/product.entity';
 import { extname } from 'path';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard'; // Importe o JwtAuthGuard
+import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
+@ApiTags('products')
 @Controller('products')
 @UseGuards(JwtAuthGuard) // Protege todos os métodos com o JwtAuthGuard
 export class ProductsController {
