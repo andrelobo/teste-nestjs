@@ -12,6 +12,7 @@ export class CreateUserDto {
   username: string;
 
   @IsString()
+  @Length(6, 100) // Adiciona um comprimento mínimo para a senha
   password: string;
 
   @IsEmail()
@@ -19,5 +20,6 @@ export class CreateUserDto {
 
   @IsOptional()
   @IsArray()
+  @IsString({ each: true }) // Garante que cada item do array seja uma string
   roles?: string[];
 }

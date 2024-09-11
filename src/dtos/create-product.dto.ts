@@ -5,9 +5,9 @@ import {
   IsNumber,
   IsPositive,
   IsDateString,
-  ValidateIf,
   IsOptional,
 } from 'class-validator';
+import { FutureDateValidator } from '../validators/future-date.validator';
 
 export class CreateProductDto {
   @IsString()
@@ -24,8 +24,7 @@ export class CreateProductDto {
   @IsPositive()
   price: number;
 
-  @IsDateString()
-  @ValidateIf((o) => new Date(o.expiryDate) > new Date())
+  @FutureDateValidator({ message: 'The expiration date must be in the future.' })
   expiryDate: string;
 
   @IsOptional()
