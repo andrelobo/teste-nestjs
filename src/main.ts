@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 async function bootstrap() {
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   const app = await NestFactory.create(AppModule);
 
   // Configuração do Swagger
