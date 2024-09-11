@@ -6,9 +6,9 @@ import {
   Param,
   Put,
   Delete,
+  Query,
   UploadedFile,
   UseInterceptors,
-  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -17,12 +17,10 @@ import { CreateProductDto } from '../dtos/create-product.dto';
 import { UpdateProductDto } from '../dtos/update-product.dto';
 import { Product } from '../entities/product.entity';
 import { extname } from 'path';
-import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 
 @ApiTags('products')
 @Controller('products')
-@UseGuards(JwtAuthGuard) // Protege todos os métodos com o JwtAuthGuard
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
@@ -54,8 +52,30 @@ export class ProductsController {
   }
 
   @Get()
-  findAll(): Promise<Product[]> {
-    return this.productsService.findAll();
+  @ApiQuery({
+    name: 'page',
+    required: false,
+    type: Number,
+    description: 'Page number',
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    type: Number,
+    description: 'Number of items per page',
+  })
+  @ApiQuery({
+    name: 'search',
+    required: false,
+    type: String,
+    description: 'Search term for name and description',
+  })
+  async findAll(
+    @Query('page') page = 1,
+    @Query('limit') limit = 10,
+    @Query('search') search = '',
+  ): Promise<{ products: Product[]; total: number }> {
+    return this.productsService.findAll(page, limit, search);
   }
 
   @Get(':id')
