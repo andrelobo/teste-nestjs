@@ -34,6 +34,7 @@ export class AuthService {
     // Verifica se o usuário existe
     const user = await this.usersService.findByUsername(username);
     if (user && (await this.validatePassword(password, user.password))) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
       return result;
     }

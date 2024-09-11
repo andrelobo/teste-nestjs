@@ -1,6 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import * as dotenv from 'dotenv';
+
+// Carregue as variáveis de ambiente do arquivo .env
+dotenv.config();
+
+console.log('DATABASE_TYPE:', process.env.DATABASE_TYPE);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
