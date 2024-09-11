@@ -8,6 +8,7 @@ import {
   Delete,
   UploadedFile,
   UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -16,8 +17,10 @@ import { CreateProductDto } from '../dtos/create-product.dto';
 import { UpdateProductDto } from '../dtos/update-product.dto';
 import { Product } from '../entities/product.entity';
 import { extname } from 'path';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard'; // Importe o JwtAuthGuard
 
 @Controller('products')
+@UseGuards(JwtAuthGuard) // Protege todos os métodos com o JwtAuthGuard
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
