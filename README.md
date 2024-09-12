@@ -1,52 +1,91 @@
+
 # API de Gerenciamento de Produtos
 
-Esta API é projetada para gerenciar produtos e categorias. Oferece operações CRUD (Criar, Ler, Atualizar e Excluir) para produtos e categorias, com autenticação baseada em JWT para proteger os endpoints.
+Esta API gerencia produtos e categorias, oferecendo operações CRUD protegidas por autenticação JWT.
 
-## Tecnologias Usadas
+## Tecnologias
 
-### NestJS
-- **Motivo**: O NestJS é um framework Node.js progressivo que facilita a construção de aplicativos escaláveis e eficientes. Ele utiliza TypeScript por padrão, o que proporciona uma melhor tipagem e suporte a recursos modernos de JavaScript.
+- **NestJS**: Framework Node.js modular e escalável, com suporte a TypeScript.
+- **TypeORM**: ORM para manipulação de bancos de dados relacionais com entidades e repositórios.
+- **MySQL**: Banco de dados relacional, confiável e amplamente utilizado.
+- **Passport.js**: Middleware de autenticação com suporte a JWT.
+- **Bcrypt**: Biblioteca para hash seguro de senhas.
+- **Multer**: Middleware para manipulação de upload de arquivos.
+- **Dotenv**: Carrega variáveis de ambiente de um arquivo `.env` para a aplicação.
+- **Prettier**: Ferramenta para formatação de código consistente.
 
-### TypeORM
-- **Motivo**: O TypeORM é uma biblioteca de ORM para TypeScript e JavaScript que facilita a interação com bancos de dados relacionais. Ele ajuda a mapear entidades para tabelas e permite realizar operações de banco de dados de maneira intuitiva.
+## Dependências Principais
 
-### MySQL
-- **Motivo**: MySQL é um dos sistemas de gerenciamento de banco de dados relacionais mais populares e amplamente usados, conhecido por sua confiabilidade e desempenho.
+- `@nestjs/common`: ^10.0.0
+- `@nestjs/core`: ^10.0.0
+- `@nestjs/jwt`: ^10.2.0
+- `@nestjs/passport`: ^10.0.3
+- `@nestjs/swagger`: ^7.4.0
+- `@nestjs/typeorm`: ^10.0.2
+- `mysql2`: ^3.11.0
+- `passport`: ^0.7.0
+- `passport-jwt`: ^4.0.1
+- `bcrypt`: ^5.1.1
+- `multer`: ^1.4.5-lts.1
+- `dotenv`: ^16.4.5
+- `swagger-ui-express`: ^5.0.1
+- `typeorm`: ^0.3.20
 
-### Passport.js
-- **Motivo**: Passport é um middleware de autenticação para Node.js que suporta vários mecanismos de autenticação, como JWT, e facilita a integração com diferentes estratégias de autenticação.
+## Dependências de Desenvolvimento
 
-### Bcrypt
-- **Motivo**: Bcrypt é uma biblioteca para hash de senhas, oferecendo uma maneira segura de armazenar e verificar senhas no banco de dados.
+- `@nestjs/cli`: ^10.0.0
+- `@types/express`: ^4.17.17
+- `@types/jest`: ^29.5.2
+- `jest`: ^29.5.0
+- `supertest`: ^7.0.0
+- `ts-node`: ^10.9.1
+- `prettier`: ^3.0.0
+- `eslint`: ^8.42.0
+- `typescript`: ^5.1.3
 
-## Passo a Passo para Rodar a Aplicação Localmente
+## Como Rodar a Aplicação
 
-1. **Clone o Repositório**
+### Pré-requisitos
+- MySQL instalado localmente
+- Docker (opcional)
 
+### Rodando Localmente
+
+1. **Clone o repositório**:
    ```bash
    git clone <URL_DO_REPOSITORIO>
    cd <NOME_DA_PASTA>
+   ```
 
+2. **Instale as dependências**:
+   ```bash
+   yarn install
+   ```
 
-2. **Instale as Dependências**
+3. **Configure o banco de dados**:
+   - Crie um banco MySQL chamado `irede_produtos`.
+   - Defina as credenciais no arquivo `.env` com as variáveis de ambiente (utilizando o `dotenv`).
 
-  Utilize o Yarn para instalar as dependências:
+4. **Inicie a aplicação**:
+   ```bash
+   yarn start
+   ```
 
-  yarn install
+### Rodando com Docker
 
-3. ** Configuração do Banco de dados**
+1. **Suba os serviços com Docker Compose**:
+   ```bash
+   docker-compose up -d
+   ```
 
- 
+   Isso iniciará a API e o MySQL em containers.
 
-Crie um banco de dados MySQL com o nome irede_produtos e configure o acesso no arquivo ormconfig.json ou nas variáveis de ambiente.
+### Acesso à Documentação
 
-Inicialize a Aplicação
+A documentação completa da API está disponível em [http://localhost:3000/api](http://localhost:3000/api) (Swagger), onde você encontrará detalhes de todos os endpoints.
 
-Execute o comando para iniciar a aplicação:
+### Autenticação
 
-    yarn start
-
-    Teste os Endpoints
-
-    A API estará disponível em http://localhost:3000. Você pode testar os endpoints usando uma ferramenta como Insomnia ou Postman.
-
+1. **Registro**: Use o endpoint `/auth/register` para criar uma conta.
+2. **Login**: Após o registro, faça login em `/auth/login` para receber um token JWT.
+3. **Testar endpoints**: Use o token JWT nos outros endpoints protegidos.
