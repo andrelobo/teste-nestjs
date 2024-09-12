@@ -17,34 +17,34 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly UsersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.UsersService.create(createUserDto);
+    return this.usersService.create(createUserDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
-    return this.UsersService.findAll();
+    return this.usersService.findAll();
   }
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.UsersService.findOne(+id);
+    return this.usersService.findOne(+id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.UsersService.update(+id, updateUserDto);
+    return this.usersService.update(+id, updateUserDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.UsersService.remove(+id);
+    return this.usersService.remove(+id);
   }
 }

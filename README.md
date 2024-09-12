@@ -65,6 +65,7 @@ Esta API gerencia produtos e categorias, oferecendo operações CRUD protegidas 
 3. **Configure o banco de dados**:
    - Crie um banco MySQL chamado `irede_produtos`.
    - Defina as credenciais no arquivo `.env` com as variáveis de ambiente (utilizando o `dotenv`).
+   - Tem um .env.example !!!
 
 4. **Inicie a aplicação**:
    ```bash

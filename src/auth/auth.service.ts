@@ -12,7 +12,6 @@ export class AuthService {
   ) {}
 
   async register(createUserDto: CreateUserDto) {
-    // Verificar se o usuário já existe
     const existingUser = await this.usersService.findByUsername(
       createUserDto.username,
     );
@@ -20,21 +19,18 @@ export class AuthService {
       throw new UnauthorizedException('Username already exists');
     }
 
-    // Criptografa a senha antes de salvar
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
     const user = await this.usersService.create({
       ...createUserDto,
       password: hashedPassword,
     });
 
-    return this.login(user); // Retorna o token após o registro
+    return this.login(user);
   }
 
   async validateUser(username: string, password: string): Promise<any> {
-    // Verifica se o usuário existe
     const user = await this.usersService.findByUsername(username);
     if (user && (await this.validatePassword(password, user.password))) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
       return result;
     }
