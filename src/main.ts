@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
+import { getConnection } from 'typeorm';
 
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -28,6 +29,17 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  try {
+    const connection = getConnection();
+    if (connection.isConnected) {
+      console.log('Conexão com o banco de dados estabelecida com sucesso.');
+    } else {
+      console.error('Não foi possível conectar ao banco de dados.');
+    }
+  } catch (error) {
+    console.error('Erro ao tentar conectar ao banco de dados:', error.message);
+  }
 
   const port = process.env.PORT || 3000;
   await app.listen(port, () => {
