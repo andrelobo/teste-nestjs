@@ -76,7 +76,7 @@ Esta API gerencia produtos e categorias, oferecendo operações CRUD protegidas 
 
 1. **Suba os serviços com Docker Compose**:
    ```bash
-   docker-compose up -d
+   docker-compose up --build
    ```
 
    Isso iniciará a API e o MySQL em containers.
